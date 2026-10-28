@@ -1,876 +1,634 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102820">
-  <title>جاهز Pro | خدمات وطلبات وإعلانات</title>
-  <meta name="description" content="جاهز Pro - منصة الخدمات والطلبات والإعلانات في مكان واحد.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102820">
+<title>جاهز Pro | خدمات وطلبات وإعلانات</title>
+<meta name="description" content="جاهز Pro - منصة الخدمات والطلبات والإعلانات في مكان واحد.">
 
-  <style>
-    :root {
-      --green: #123b2c;
-      --green-light: #1c503b;
-      --gold: #e9b949;
-      --bg: #f5f7f4;
-      --text: #17251d;
-      --muted: #738078;
-      --white: #fff;
-      --border: #e5eae5;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Tahoma, Arial, sans-serif;
-      line-height: 1.7;
-    }
-
-    button, input, textarea, select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    .container {
-      width: min(100% - 28px, 1050px);
-      margin: auto;
-    }
-
-    header {
-      background: var(--green);
-      color: white;
-      padding: 22px 0 28px;
-      border-radius: 0 0 26px 26px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand {
-      font-size: 25px;
-      font-weight: 900;
-      color: var(--gold);
-    }
-
-    .brand small {
-      display: block;
-      color: #d7e4da;
-      font-size: 11px;
-      font-weight: normal;
-    }
-
-    .login-btn {
-      color: white;
-      border: 1px solid #739080;
-      background: transparent;
-      padding: 8px 14px;
-      border-radius: 12px;
-    }
-
-    .hero {
-      padding: 28px 0 8px;
-    }
-
-    .hero h1 {
-      font-size: clamp(25px, 5vw, 38px);
-      line-height: 1.5;
-      margin: 0 0 8px;
-    }
-
-    .hero p {
-      color: #d8e4dc;
-      margin: 0;
-    }
-
-    .location {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .location select {
-      min-width: 0;
-      width: 100%;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid #dce5dc;
-      background: white;
-      color: var(--text);
-    }
-
-    main {
-      padding: 26px 0 105px;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .section-title h2 {
-      font-size: 21px;
-      margin: 0;
-    }
-
-    .section-title span {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .main-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .main-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px 10px;
-      text-align: center;
-      box-shadow: 0 4px 15px #123b2c08;
-    }
-
-    .main-card .icon {
-      display: block;
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .main-card strong {
-      display: block;
-      font-size: 15px;
-    }
-
-    .main-card p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .main-card:focus-visible,
-    button:focus-visible {
-      outline: 3px solid var(--gold);
-      outline-offset: 3px;
-    }
-
-    .panel {
-      margin-top: 24px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-    }
-
-    .panel h2 {
-      margin: 0 0 12px;
-      font-size: 19px;
-    }
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 9px;
-    }
-
-    .category {
-      text-align: right;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      background: #fff;
-      color: var(--text);
-    }
-
-    .category:hover {
-      border-color: var(--green-light);
-      background: #f4f8f4;
-    }
-
-    .feed {
-      display: grid;
-      gap: 10px;
-    }
-
-    .empty {
-      color: var(--muted);
-      text-align: center;
-      padding: 22px 10px;
-      border: 1px dashed #d6dfd6;
-      border-radius: 12px;
-      font-size: 14px;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      z-index: 5;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      border-top: 1px solid var(--border);
-      padding: 9px 10px calc(9px + env(safe-area-inset-bottom));
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
-
-    .nav-btn {
-      border: 0;
-      background: transparent;
-      color: var(--muted);
-      font-size: 12px;
-      padding: 4px;
-    }
-
-    .nav-btn span {
-      display: block;
-      font-size: 20px;
-    }
-
-    .add-btn {
-      width: 54px;
-      height: 54px;
-      border: 0;
-      border-radius: 18px;
-      background: var(--gold);
-      color: var(--green);
-      font-size: 34px;
-      font-weight: bold;
-      box-shadow: 0 5px 14px #123b2c24;
-      margin-top: -28px;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 10;
-      background: #07170fcc;
-      padding: 18px;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .overlay.open {
-      display: flex;
-    }
-
-    .sheet {
-      width: min(100%, 520px);
-      max-height: 90%;
-      overflow-y: auto;
-      background: white;
-      border-radius: 22px;
-      padding: 22px;
-    }
-
-    .sheet-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .sheet-head h2 {
-      margin: 0 0 12px;
-    }
-
-    .close-btn {
-      border: 0;
-      background: #eef2ed;
-      border-radius: 10px;
-      padding: 6px 12px;
-    }
-
-    .action-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .action {
-      text-align: right;
-      padding: 15px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: #fff;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .action .icon {
-      font-size: 27px;
-    }
-
-    .action strong,
-    .action small {
-      display: block;
-    }
-
-    .action small {
-      color: var(--muted);
-      margin-top: 3px;
-    }
-
-    .field {
-      margin: 12px 0;
-    }
-
-    .field label {
-      display: block;
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    .field input,
-    .field textarea,
-    .field select {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #dce3dc;
-      border-radius: 11px;
-      background: white;
-    }
-
-    .field textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .primary-btn {
-      width: 100%;
-      background: var(--green);
-      color: white;
-      border: 0;
-      padding: 13px;
-      border-radius: 12px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .notice {
-      background: #fff6dd;
-      color: #725315;
-      border-radius: 10px;
-      padding: 10px;
-      font-size: 12px;
-      margin-top: 12px;
-    }
-
-    .preview {
-      max-width: 100%;
-      max-height: 180px;
-      display: none;
-      margin-top: 10px;
-      border-radius: 12px;
-    }
-
-    @media (max-width: 420px) {
-      .main-grid {
-        gap: 7px;
-      }
-
-      .main-card {
-        padding: 15px 5px;
-      }
-
-      .main-card strong {
-        font-size: 13px;
-      }
-
-      .location {
-        flex-direction: column;
-      }
-    }
-  </style>
+<style>
+:root {
+  --green: #123b2c;
+  --green-light: #1c503b;
+  --gold: #e9b949;
+  --bg: #f5f7f4;
+  --text: #17251d;
+  --muted: #738078;
+  --border: #e5eae5;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Tahoma, Arial, sans-serif;
+  line-height: 1.7;
+}
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+.container { width: min(100% - 28px, 1050px); margin: auto; }
+header {
+  background: var(--green);
+  color: white;
+  padding: 22px 0 28px;
+  border-radius: 0 0 26px 26px;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.brand { font-size: 25px; font-weight: 900; color: var(--gold); }
+.brand small {
+  display: block;
+  color: #d7e4da;
+  font-size: 11px;
+  font-weight: normal;
+}
+.login-btn {
+  color: white;
+  border: 1px solid #739080;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 12px;
+}
+.hero { padding: 28px 0 8px; }
+.hero h1 {
+  font-size: clamp(25px, 5vw, 38px);
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+.hero p { color: #d8e4dc; margin: 0; }
+.location { display: flex; gap: 10px; margin-top: 20px; }
+.location select {
+  min-width: 0;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #dce5dc;
+  background: white;
+  color: var(--text);
+}
+main { padding: 26px 0 105px; }
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.section-title h2 { font-size: 21px; margin: 0; }
+.section-title span { font-size: 12px; color: var(--muted); }
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.main-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px #123b2c08;
+}
+.main-card .icon { display: block; font-size: 32px; margin-bottom: 8px; }
+.main-card strong { display: block; font-size: 15px; }
+.main-card p { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.panel {
+  margin-top: 24px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+}
+.panel h2 { margin: 0 0 12px; font-size: 19px; }
+.categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.category {
+  text-align: right;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  background: white;
+  color: var(--text);
+}
+.category:hover { border-color: var(--green-light); background: #f4f8f4; }
+.feed { display: grid; gap: 10px; }
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 22px 10px;
+  border: 1px dashed #d6dfd6;
+  border-radius: 12px;
+  font-size: 14px;
+}
+.post { border: 1px solid var(--border); border-radius: 14px; padding: 14px; background: white; }
+.post h3 { margin: 5px 0; font-size: 17px; }
+.post p { margin: 6px 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.post-meta { font-size: 12px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+.pill { display: inline-block; background: #edf4ee; color: var(--green); padding: 2px 8px; border-radius: 20px; font-size: 12px; }
+.bottom-nav {
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid var(--border);
+  padding: 9px 10px calc(9px + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.nav-btn { border: 0; background: transparent; color: var(--muted); font-size: 12px; padding: 4px; }
+.nav-btn span { display: block; font-size: 20px; }
+.add-btn {
+  width: 54px;
+  height: 54px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--gold);
+  color: var(--green);
+  font-size: 34px;
+  font-weight: bold;
+  box-shadow: 0 5px 14px #123b2c24;
+  margin-top: -28px;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #07170fcc;
+  padding: 18px;
+  align-items: flex-end;
+  justify-content: center;
+}
+.overlay.open { display: flex; }
+.sheet {
+  width: min(100%, 520px);
+  max-height: 90%;
+  overflow-y: auto;
+  background: white;
+  border-radius: 22px;
+  padding: 22px;
+}
+.sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.sheet-head h2 { margin: 0 0 12px; }
+.close-btn { border: 0; background: #eef2ed; border-radius: 10px; padding: 6px 12px; }
+.action-list { display: grid; gap: 10px; }
+.action {
+  text-align: right;
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: white;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+}
+.action .icon { font-size: 27px; }
+.action strong, .action small { display: block; }
+.action small { color: var(--muted); margin-top: 3px; }
+.field { margin: 12px 0; }
+.field label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+.field input, .field textarea, .field select {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dce3dc;
+  border-radius: 11px;
+  background: white;
+}
+.field textarea { min-height: 90px; resize: vertical; }
+.primary-btn, .secondary-btn {
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.primary-btn { background: var(--green); color: white; }
+.secondary-btn { background: #eef2ed; color: var(--green); }
+.notice { background: #fff6dd; color: #725315; border-radius: 10px; padding: 10px; font-size: 12px; margin-top: 12px; }
+.status { font-size: 13px; padding: 10px; border-radius: 10px; margin: 10px 0; }
+.status.error { background: #ffe9e7; color: #8a2018; }
+.status.success { background: #e7f6e9; color: #155b2b; }
+.muted { color: var(--muted); font-size: 12px; }
+@media (max-width: 420px) {
+  .main-grid { gap: 7px; }
+  .main-card { padding: 15px 5px; }
+  .main-card strong { font-size: 13px; }
+  .location { flex-direction: column; }
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="topbar">
-        <div class="brand">
-          جاهز Pro
-          <small>كل خدماتك وطلباتك وإعلاناتك بمكان واحد</small>
-        </div>
-        <button class="login-btn" id="loginBtn">دخول</button>
-      </div>
-
-      <div class="hero">
-        <h1>شو محتاج اليوم؟</h1>
-        <p>اطلب خدمة، اعرض شغلك، أو انشر إعلانك بسهولة.</p>
-      </div>
-
-      <div class="location">
-        <select id="governorate" aria-label="المحافظة">
-          <option value="">اختر المحافظة</option>
-          <option>إدلب</option>
-          <option>حلب</option>
-          <option>دمشق</option>
-          <option>ريف دمشق</option>
-          <option>حمص</option>
-          <option>حماة</option>
-          <option>اللاذقية</option>
-          <option>طرطوس</option>
-          <option>درعا</option>
-          <option>السويداء</option>
-          <option>القنيطرة</option>
-          <option>دير الزور</option>
-          <option>الرقة</option>
-          <option>الحسكة</option>
-        </select>
-
-        <select id="city" aria-label="المدينة">
-          <option value="">اختر المدينة أو المنطقة</option>
-          <option>إدلب</option>
-          <option>أريحا</option>
-          <option>سرمدا</option>
-          <option>الدانا</option>
-          <option>جسر الشغور</option>
-          <option>معرة مصرين</option>
-          <option>مدينة أخرى</option>
-        </select>
-      </div>
+<header>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">جاهز Pro<small>كل خدماتك وطلباتك وإعلاناتك بمكان واحد</small></div>
+      <button class="login-btn" id="loginBtn">دخول / حساب جديد</button>
     </div>
-  </header>
-
-  <main class="container">
-    <div class="section-title">
-      <h2>أقسام جاهز Pro</h2>
-      <span>اختر القسم المناسب</span>
+    <div class="hero">
+      <h1>شو محتاج اليوم؟</h1>
+      <p>اطلب خدمة، اعرض شغلك، أو انشر إعلانك بسهولة.</p>
     </div>
-
-    <div class="main-grid">
-      <button class="main-card" data-section="services">
-        <span class="icon">🛠️</span>
-        <strong>الخدمات</strong>
-        <p>اعثر على مقدم خدمة</p>
-      </button>
-
-      <button class="main-card" data-section="requests">
-        <span class="icon">📋</span>
-        <strong>الطلبات</strong>
-        <p>شوف شو الناس محتاجة</p>
-      </button>
-
-      <button class="main-card" data-section="ads">
-        <span class="icon">📢</span>
-        <strong>الإعلانات</strong>
-        <p>بيع واشترِ وانشر إعلانك</p>
-      </button>
-    </div>
-
-    <section class="panel" id="sectionPanel">
-      <h2 id="panelTitle">الخدمات حسب الاختصاص</h2>
-      <div class="categories" id="categories"></div>
-    </section>
-
-    <section class="panel">
-      <h2 id="feedTitle">أحدث المنشورات</h2>
-      <div class="feed" id="feed">
-        <div class="empty">
-          رح تظهر المنشورات هون بعد ربط الموقع بقاعدة البيانات.
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <nav class="bottom-nav" aria-label="التنقل الرئيسي">
-    <button class="nav-btn" data-section="services">
-      <span>🛠️</span>الخدمات
-    </button>
-
-    <button class="nav-btn" data-section="requests">
-      <span>📋</span>الطلبات
-    </button>
-
-    <button class="add-btn" id="addBtn" aria-label="إضافة منشور">+</button>
-
-    <button class="nav-btn" data-section="ads">
-      <span>📢</span>الإعلانات
-    </button>
-
-    <button class="nav-btn" id="profileBtn">
-      <span>👤</span>حسابي
-    </button>
-  </nav>
-
-  <div class="overlay" id="overlay">
-    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
-      <div class="sheet-head">
-        <h2 id="sheetTitle">شو حابب تضيف؟</h2>
-        <button class="close-btn" id="closeBtn">إغلاق ✕</button>
-      </div>
-
-      <div id="sheetContent"></div>
+    <div class="location">
+      <select id="governorate" aria-label="المحافظة">
+        <option value="">كل المحافظات</option>
+        <option>إدلب</option><option>حلب</option><option>دمشق</option><option>ريف دمشق</option>
+        <option>حمص</option><option>حماة</option><option>اللاذقية</option><option>طرطوس</option>
+        <option>درعا</option><option>السويداء</option><option>القنيطرة</option><option>دير الزور</option>
+        <option>الرقة</option><option>الحسكة</option>
+      </select>
+      <select id="city" aria-label="المدينة">
+        <option value="">كل المدن والمناطق</option>
+        <option>إدلب</option><option>أريحا</option><option>سرمدا</option><option>الدانا</option>
+        <option>جسر الشغور</option><option>معرة مصرين</option><option>مدينة أخرى</option>
+      </select>
     </div>
   </div>
+</header>
 
-  <script>
-    const sectionData = {
-      services: {
-        title: "الخدمات حسب الاختصاص",
-        feed: "الخدمات المتاحة",
-        categories: [
-          "كهرباء",
-          "تمديدات صحية",
-          "دهان وديكور",
-          "بناء وإكساء",
-          "خدمات منزلية",
-          "صيانة أجهزة",
-          "سيارات وميكانيك",
-          "تعليم ودروس",
-          "نقل وشحن",
-          "تقنية وإنترنت",
-          "زراعة",
-          "أطباء وعيادات",
-          "صيدليات",
-          "مخابر وأشعة",
-          "محامون وخدمات قانونية",
-          "طب بيطري",
-          "مطاعم ومحلات",
-          "خدمات أخرى"
-        ]
-      },
+<main class="container">
+  <div class="section-title"><h2>أقسام جاهز Pro</h2><span>اختر القسم المناسب</span></div>
+  <div class="main-grid">
+    <button class="main-card" data-section="services"><span class="icon">🛠️</span><strong>الخدمات</strong><p>اعثر على مقدم خدمة</p></button>
+    <button class="main-card" data-section="requests"><span class="icon">📋</span><strong>الطلبات</strong><p>شوف شو الناس محتاجة</p></button>
+    <button class="main-card" data-section="ads"><span class="icon">📢</span><strong>الإعلانات</strong><p>بيع واشترِ وانشر إعلانك</p></button>
+  </div>
+  <section class="panel" id="sectionPanel"><h2 id="panelTitle">الخدمات حسب الاختصاص</h2><div class="categories" id="categories"></div></section>
+  <section class="panel"><h2 id="feedTitle">الخدمات المتاحة</h2><div class="feed" id="feed"><div class="empty">جارٍ تحميل المنشورات...</div></div></section>
+</main>
 
-      requests: {
-        title: "طلبات الناس",
-        feed: "أحدث طلبات الخدمات",
-        categories: [
-          "كهرباء",
-          "تمديدات صحية",
-          "دهان وديكور",
-          "بناء وإكساء",
-          "خدمات منزلية",
-          "صيانة أجهزة",
-          "سيارات وميكانيك",
-          "تعليم ودروس",
-          "نقل وشحن",
-          "تقنية وإنترنت",
-          "زراعة",
-          "أطباء وعيادات",
-          "صيدليات",
-          "مخابر وأشعة",
-          "محامون",
-          "طب بيطري",
-          "طلبات أخرى"
-        ]
-      },
+<nav class="bottom-nav" aria-label="التنقل الرئيسي">
+  <button class="nav-btn" data-section="services"><span>🛠️</span>الخدمات</button>
+  <button class="nav-btn" data-section="requests"><span>📋</span>الطلبات</button>
+  <button class="add-btn" id="addBtn" aria-label="إضافة منشور">+</button>
+  <button class="nav-btn" data-section="ads"><span>📢</span>الإعلانات</button>
+  <button class="nav-btn" id="profileBtn"><span>👤</span>حسابي</button>
+</nav>
 
-      ads: {
-        title: "الإعلانات والتصنيفات",
-        feed: "أحدث الإعلانات",
-        categories: [
-          "سيارات",
-          "دراجات نارية",
-          "عقارات للبيع",
-          "عقارات للإيجار",
-          "أراضٍ",
-          "شاليهات ومسابح",
-          "مطاعم ومحلات للبيع",
-          "أثاث مستعمل",
-          "برادات وغسالات",
-          "مدافئ وأجهزة منزلية",
-          "مطلوب للشراء",
-          "إعلانات أخرى"
-        ]
-      }
-    };
+<div class="overlay" id="overlay">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-head"><h2 id="sheetTitle">شو حابب تضيف؟</h2><button class="close-btn" id="closeBtn">إغلاق ✕</button></div>
+    <div id="sheetContent"></div>
+  </div>
+</div>
 
-    const overlay = document.getElementById("overlay");
-    const sheetTitle = document.getElementById("sheetTitle");
-    const sheetContent = document.getElementById("sheetContent");
-    const categories = document.getElementById("categories");
-    const panelTitle = document.getElementById("panelTitle");
-    const feedTitle = document.getElementById("feedTitle");
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  "use strict";
 
-    let currentSection = "services";
+  // المفتاح هنا Publishable عام. لا تضع مفتاح service_role في موقعك.
+  const SUPABASE_URL = "https://tzolhmlpejigoeenbtxr.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Qa9WAk5NepoCLoyev5S2_A_VBDf1-Ip";
+  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-    function renderSection(section) {
-      if (!sectionData[section]) return;
+  const sectionData = {
+    services: {
+      title: "الخدمات حسب الاختصاص",
+      feed: "الخدمات المتاحة",
+      categories: ["كهرباء","تمديدات صحية","دهان وديكور","بناء وإكساء","خدمات منزلية","صيانة أجهزة","سيارات وميكانيك","تعليم ودروس","نقل وشحن","تقنية وإنترنت","زراعة","أطباء وعيادات","صيدليات","مخابر وأشعة","محامون وخدمات قانونية","طب بيطري","مطاعم ومحلات","خدمات أخرى"]
+    },
+    requests: {
+      title: "طلبات الناس",
+      feed: "أحدث طلبات الخدمات",
+      categories: ["كهرباء","تمديدات صحية","دهان وديكور","بناء وإكساء","خدمات منزلية","صيانة أجهزة","سيارات وميكانيك","تعليم ودروس","نقل وشحن","تقنية وإنترنت","زراعة","أطباء وعيادات","صيدليات","مخابر وأشعة","محامون","طب بيطري","طلبات أخرى"]
+    },
+    ads: {
+      title: "الإعلانات والتصنيفات",
+      feed: "أحدث الإعلانات",
+      categories: ["سيارات","دراجات نارية","عقارات للبيع","عقارات للإيجار","أراضٍ","شاليهات ومسابح","مطاعم ومحلات للبيع","أثاث مستعمل","برادات وغسالات","مدافئ وأجهزة منزلية","مطلوب للشراء","إعلانات أخرى"]
+    }
+  };
+  const governors = ["إدلب","حلب","دمشق","ريف دمشق","حمص","حماة","اللاذقية","طرطوس","درعا","السويداء","القنيطرة","دير الزور","الرقة","الحسكة"];
+  const $ = id => document.getElementById(id);
+  const overlay = $("overlay"), sheetTitle = $("sheetTitle"), sheetContent = $("sheetContent");
+  const categories = $("categories"), panelTitle = $("panelTitle"), feedTitle = $("feedTitle"), feed = $("feed");
+  let currentSection = "services", currentUser = null;
 
-      currentSection = section;
-      const data = sectionData[section];
+  const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  })[c]);
 
-      panelTitle.textContent = data.title;
-      feedTitle.textContent = data.feed;
-      categories.replaceChildren();
+  function showStatus(container, message, type = "error") {
+    let box = container.querySelector(".status");
+    if (!box) {
+      box = document.createElement("div");
+      box.className = "status";
+      container.prepend(box);
+    }
+    box.className = "status " + type;
+    box.textContent = message;
+  }
 
-      data.categories.forEach(category => {
-        const button = document.createElement("button");
-        button.className = "category";
-        button.textContent = category + " ←";
+  function openSheet(title, node) {
+    sheetTitle.textContent = title;
+    sheetContent.replaceChildren(node);
+    overlay.classList.add("open");
+  }
 
-        button.addEventListener("click", () => {
-          openForm(section, category);
+  function closeSheet() { overlay.classList.remove("open"); }
+
+  function renderSection(section, scroll = true) {
+    if (!sectionData[section]) return;
+    currentSection = section;
+    panelTitle.textContent = sectionData[section].title;
+    feedTitle.textContent = sectionData[section].feed;
+    categories.replaceChildren();
+
+    sectionData[section].categories.forEach(category => {
+      const button = document.createElement("button");
+      button.className = "category";
+      button.textContent = category + " ←";
+      button.addEventListener("click", () => openForm(section, category));
+      categories.appendChild(button);
+    });
+
+    if (scroll) $("sectionPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+    loadPosts();
+  }
+
+  function makeActions(items) {
+    const list = document.createElement("div");
+    list.className = "action-list";
+    items.forEach(item => {
+      const button = document.createElement("button");
+      button.className = "action";
+      const icon = document.createElement("span");
+      icon.className = "icon";
+      icon.textContent = item.icon;
+      const text = document.createElement("span");
+      const strong = document.createElement("strong");
+      strong.textContent = item.title;
+      const small = document.createElement("small");
+      small.textContent = item.description;
+      text.append(strong, small);
+      button.append(icon, text);
+      button.addEventListener("click", item.action);
+      list.appendChild(button);
+    });
+    return list;
+  }
+
+  function openAddMenu() {
+    openSheet("شو حابب تضيف؟", makeActions([
+      {icon:"🔎",title:"بدي خدمة",description:"انشر طلبك ليشوفه مقدمو الخدمات",action:()=>openForm("requests")},
+      {icon:"🛠️",title:"عندي خدمة",description:"اعرض خدمتك واختصاصك",action:()=>openForm("services")},
+      {icon:"📢",title:"عندي إعلان",description:"الإعلانات تحتاج جدولاً مستقلاً قبل تفعيل النشر",action:()=>openForm("ads")}
+    ]));
+  }
+
+  async function refreshUser() {
+    const { data, error } = await db.auth.getUser();
+    currentUser = error ? null : (data.user || null);
+    $("loginBtn").textContent = currentUser ? "تسجيل الخروج" : "دخول / حساب جديد";
+  }
+
+  function openAuth() {
+    const form = document.createElement("form");
+    form.innerHTML = `
+      <div class="notice">سجّل الدخول أو أنشئ حساباً بالبريد الإلكتروني. قد تحتاج إلى تأكيد بريدك من رسالة Supabase.</div>
+      <div class="field"><label>البريد الإلكتروني *</label><input name="email" type="email" autocomplete="email" required maxlength="254"></div>
+      <div class="field"><label>كلمة المرور *</label><input name="password" type="password" autocomplete="current-password" required minlength="6"></div>
+      <button class="primary-btn" type="submit">دخول</button>
+      <button class="secondary-btn" type="button" id="signupBtn">إنشاء حساب جديد</button>`;
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      const button = form.querySelector('[type="submit"]');
+      button.disabled = true;
+      try {
+        const { error } = await db.auth.signInWithPassword({
+          email: form.elements.email.value.trim(),
+          password: form.elements.password.value
         });
+        if (error) throw error;
+        await refreshUser();
+        showStatus(form, "تم تسجيل الدخول بنجاح.", "success");
+        setTimeout(closeSheet, 700);
+      } catch (error) {
+        showStatus(form, error.message || "تعذّر تسجيل الدخول.");
+      } finally {
+        button.disabled = false;
+      }
+    });
 
-        categories.appendChild(button);
-      });
-
-      document.getElementById("sectionPanel").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-
-    function openSheet(title, content) {
-      sheetTitle.textContent = title;
-      sheetContent.replaceChildren();
-      sheetContent.appendChild(content);
-      overlay.classList.add("open");
-      document.getElementById("closeBtn").focus();
-    }
-
-    function closeSheet() {
-      overlay.classList.remove("open");
-    }
-
-    function makeActions(actions) {
-      const list = document.createElement("div");
-      list.className = "action-list";
-
-      actions.forEach(item => {
-        const button = document.createElement("button");
-        button.className = "action";
-
-        const icon = document.createElement("span");
-        icon.className = "icon";
-        icon.textContent = item.icon;
-
-        const text = document.createElement("span");
-        const strong = document.createElement("strong");
-        strong.textContent = item.title;
-
-        const small = document.createElement("small");
-        small.textContent = item.description;
-
-        text.append(strong, small);
-        button.append(icon, text);
-
-        button.addEventListener("click", item.action);
-        list.appendChild(button);
-      });
-
-      return list;
-    }
-
-    function openAddMenu() {
-      const actions = makeActions([
-        {
-          icon: "🔎",
-          title: "بدي خدمة",
-          description: "انشر طلبك ليشوفه مقدمو الخدمات",
-          action: () => openForm("requests")
-        },
-        {
-          icon: "🛠️",
-          title: "عندي خدمة",
-          description: "اعرض خدمتك واختصاصك",
-          action: () => openForm("services")
-        },
-        {
-          icon: "📢",
-          title: "عندي إعلان",
-          description: "انشر إعلان بيع أو شراء أو إيجار",
-          action: () => openForm("ads")
+    form.querySelector("#signupBtn").addEventListener("click", async () => {
+      const email = form.elements.email.value.trim();
+      const password = form.elements.password.value;
+      if (!email || password.length < 6) {
+        showStatus(form, "أدخل بريداً صحيحاً وكلمة مرور من 6 أحرف على الأقل.");
+        return;
+      }
+      const button = form.querySelector("#signupBtn");
+      button.disabled = true;
+      try {
+        const { data, error } = await db.auth.signUp({ email, password });
+        if (error) throw error;
+        if (data.session) {
+          await refreshUser();
+          showStatus(form, "تم إنشاء الحساب وتسجيل الدخول.", "success");
+          setTimeout(closeSheet, 700);
+        } else {
+          showStatus(form, "تم إنشاء الحساب. افحص بريدك لتأكيده ثم سجّل الدخول.", "success");
         }
-      ]);
+      } catch (error) {
+        showStatus(form, error.message || "تعذّر إنشاء الحساب.");
+      } finally {
+        button.disabled = false;
+      }
+    });
+    openSheet("الدخول / إنشاء حساب", form);
+  }
 
-      openSheet("شو حابب تضيف؟", actions);
+  async function openForm(type, chosenCategory = "") {
+    if (type === "ads") {
+      const message = document.createElement("div");
+      message.innerHTML = '<div class="notice">قسم الإعلانات يحتاج جدول ads مستقل في Supabase وصلاحيات قراءة ونشر مناسبة. لم يتم تفعيله كي لا تُحفظ الإعلانات في جدول غير مناسب.</div>';
+      openSheet("إضافة إعلان", message);
+      return;
     }
 
-    function openForm(type, chosenCategory = "") {
-      const labels = {
-        services: "إضافة خدمة",
-        requests: "إضافة طلب خدمة",
-        ads: "إضافة إعلان"
-      };
+    const { data, error } = await db.auth.getUser();
+    if (error || !data.user) {
+      openAuth();
+      return;
+    }
+    currentUser = data.user;
 
-      const wrapper = document.createElement("form");
+    const form = document.createElement("form");
+    form.innerHTML = `
+      <div class="notice">النشر يتطلب تسجيل الدخول. رفع الصور غير مفعّل في هذه النسخة.</div>
+      <div class="field"><label>العنوان *</label><input name="title" required maxlength="120" placeholder="اكتب عنواناً واضحاً"></div>
+      <div class="field"><label>التصنيف *</label><select name="category" required><option value="">اختر التصنيف</option></select></div>
+      <div class="field"><label>التفاصيل *</label><textarea name="description" required maxlength="3000" placeholder="اكتب التفاصيل"></textarea></div>
+      <div class="field"><label>المحافظة</label><select name="governorate"><option value="">اختر المحافظة</option>${governors.map(x=>`<option>${esc(x)}</option>`).join("")}</select></div>
+      <div class="field"><label>المدينة أو المنطقة</label><input name="city" maxlength="100" placeholder="المدينة أو المنطقة أو القرية"></div>
+      <div class="field"><label>${type === "requests" ? "الميزانية" : "السعر"}</label><input name="amount" type="number" min="0" step="0.01" placeholder="اختياري"></div>
+      ${type === "requests" ? '<div class="field"><label>العملة</label><select name="currency"><option value="SYP">ليرة سورية</option><option value="USD">دولار أمريكي</option><option value="TRY">ليرة تركية</option></select></div>' : ""}
+      <div class="field"><label>رقم التواصل</label><input name="phone" type="tel" maxlength="30" placeholder="رقم الهاتف"></div>
+      <button class="primary-btn" type="submit">نشر المنشور</button>`;
 
-      wrapper.innerHTML = `
-        <div class="notice">
-          هذه واجهة أولية. النشر الفعلي سيتاح بعد ربط قاعدة البيانات وتسجيل الدخول.
-        </div>
+    const select = form.elements.category;
+    sectionData[type].categories.forEach(category => {
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = category;
+      select.appendChild(option);
+    });
+    select.value = chosenCategory;
 
-        <div class="field">
-          <label for="postTitle">العنوان *</label>
-          <input id="postTitle" name="title" required maxlength="120"
-                 placeholder="اكتب عنواناً واضحاً">
-        </div>
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      const button = form.querySelector('[type="submit"]');
+      button.disabled = true;
+      button.textContent = "جارٍ النشر...";
+      const values = new FormData(form);
+      const amountText = String(values.get("amount") || "").trim();
+      const amount = amountText === "" ? null : Number(amountText);
 
-        <div class="field">
-          <label for="postCategory">التصنيف *</label>
-          <select id="postCategory" name="category" required>
-            <option value="">اختر التصنيف</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="postDescription">التفاصيل *</label>
-          <textarea id="postDescription" name="description" required
-                    maxlength="3000" placeholder="اكتب التفاصيل"></textarea>
-        </div>
-
-        <div class="field">
-          <label for="postGovernorate">المحافظة</label>
-          <select id="postGovernorate" name="governorate">
-            <option value="">اختر المحافظة</option>
-            ${[
-              "إدلب", "حلب", "دمشق", "ريف دمشق", "حمص",
-              "حماة", "اللاذقية", "طرطوس", "درعا",
-              "السويداء", "القنيطرة", "دير الزور",
-              "الرقة", "الحسكة"
-            ].map(x => `<option>${x}</option>`).join("")}
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="postCity">المدينة أو المنطقة</label>
-          <input id="postCity" name="city" maxlength="100"
-                 placeholder="المدينة أو المنطقة أو القرية">
-        </div>
-
-        <div class="field">
-          <label for="postPrice" id="priceLabel">السعر أو الميزانية</label>
-          <input id="postPrice" name="price" type="number"
-                 min="0" step="0.01" placeholder="اختياري">
-        </div>
-
-        <div class="field">
-          <label for="postCurrency">العملة</label>
-          <select id="postCurrency" name="currency">
-            <option value="SYP">ليرة سورية</option>
-            <option value="USD">دولار أمريكي</option>
-            <option value="TRY">ليرة تركية</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="postPhone">رقم التواصل</label>
-          <input id="postPhone" name="phone" type="tel"
-                 maxlength="30" placeholder="رقم الهاتف">
-        </div>
-
-        <div class="field">
-          <label for="postImage">صورة (اختيارية، حتى 5 ميغابايت)</label>
-          <input id="postImage" name="image" type="file" accept="image/*">
-          <img id="imagePreview" class="preview" alt="معاينة الصورة">
-        </div>
-
-        <button class="primary-btn" type="submit">متابعة النشر</button>
-      `;
-
-      const categorySelect = wrapper.querySelector("#postCategory");
-      const availableCategories =
-        type === "ads"
-          ? sectionData.ads.categories
-          : type === "requests"
-            ? sectionData.requests.categories
-            : sectionData.services.categories;
-
-      availableCategories.forEach(category => {
-        const option = document.createElement("option");
-        option.value = category;
-        option.textContent = category;
-        categorySelect.appendChild(option);
-      });
-
-      categorySelect.value = chosenCategory;
-
-      wrapper.querySelector("#priceLabel").textContent =
-        type === "requests" ? "الميزانية" : "السعر";
-
-      const imageInput = wrapper.querySelector("#postImage");
-      const preview = wrapper.querySelector("#imagePreview");
-
-      let previewUrl = null;
-
-      imageInput.addEventListener("change", () => {
-        if (previewUrl) URL.revokeObjectURL(previewUrl);
-        previewUrl = null;
-        preview.removeAttribute("src");
-        preview.style.display = "none";
-
-        const file = imageInput.files[0];
-        if (!file) return;
-
-        if (!file.type.startsWith("image/")) {
-          imageInput.value = "";
-          alert("يرجى اختيار ملف صورة.");
-          return;
+      try {
+        let result;
+        if (type === "services") {
+          result = await db.from("services").insert({
+            provider_id: currentUser.id,
+            title: String(values.get("title")).trim(),
+            category: String(values.get("category")),
+            description: String(values.get("description")).trim(),
+            city: String(values.get("city") || "").trim() || null,
+            price: amount,
+            phone: String(values.get("phone") || "").trim() || null,
+            status: "active"
+          });
+        } else {
+          result = await db.from("wanted_services").insert({
+            user_id: currentUser.id,
+            title: String(values.get("title")).trim(),
+            category: String(values.get("category")),
+            description: String(values.get("description")).trim(),
+            city: String(values.get("city") || "").trim() || null,
+            budget: amount,
+            currency: String(values.get("currency") || "SYP"),
+            status: "active"
+          });
         }
 
-        if (file.size > 5 * 1024 * 1024) {
-          imageInput.value = "";
-          alert("حجم الصورة يجب ألا يتجاوز 5 ميغابايت.");
-          return;
-        }
+        if (result.error) throw result.error;
+        showStatus(form, "تم إرسال المنشور بنجاح.", "success");
+        await loadPosts();
+        setTimeout(closeSheet, 800);
+      } catch (error) {
+        console.error("Publish error:", error);
+        showStatus(form, "تعذّر النشر: " + (error.message || "خطأ غير معروف") + ". قد تحتاج سياسات RLS أو أعمدة الجدول إلى مراجعة.");
+      } finally {
+        button.disabled = false;
+        button.textContent = "نشر المنشور";
+      }
+    });
 
-        previewUrl = URL.createObjectURL(file);
-        preview.src = previewUrl;
-        preview.style.display = "block";
-      });
+    openSheet(type === "services" ? "إضافة خدمة" : "إضافة طلب خدمة", form);
+  }
 
-      wrapper.addEventListener("submit", event => {
-        event.preventDefault();
+  function renderPost(row, type) {
+    const article = document.createElement("article");
+    article.className = "post";
+    const amount = type === "services" ? row.price : row.budget;
+    const kind = type === "services" ? "خدمة" : "طلب خدمة";
+    article.innerHTML = `
+      <div class="post-meta"><span class="pill">${kind}</span><span>${esc(row.category || "بدون تصنيف")}</span>${row.city ? `<span>📍 ${esc(row.city)}</span>` : ""}</div>
+      <h3>${esc(row.title)}</h3>
+      <p>${esc(row.description || "")}</p>
+      <div class="post-meta">
+        ${amount !== null && amount !== undefined ? `<span>${type === "services" ? "السعر" : "الميزانية"}: ${esc(amount)} ${type === "requests" ? esc(row.currency || "SYP") : ""}</span>` : ""}
+        ${row.phone ? `<span>📞 ${esc(row.phone)}</span>` : ""}
+        ${row.created_at ? `<span>${esc(new Date(row.created_at).toLocaleDateString("ar"))}</span>` : ""}
+      </div>`;
+    return article;
+  }
 
-        alert(
-          "الواجهة جاهزة مبدئياً، لكن النشر غير مفعّل بعد. " +
-          "الخطوة التالية هي ربط النموذج بتسجيل الدخول وقاعدة Supabase."
-        );
-      });
-
-      openSheet(labels[type], wrapper);
+  async function loadPosts() {
+    feed.replaceChildren();
+    if (currentSection === "ads") {
+      feed.innerHTML = '<div class="empty">الإعلانات ستظهر بعد إنشاء جدول ads في Supabase.</div>';
+      return;
     }
 
-    document.querySelectorAll("[data-section]").forEach(button => {
-      button.addEventListener("click", () => {
-        renderSection(button.dataset.section);
-      });
+    feed.innerHTML = '<div class="empty">جارٍ تحميل المنشورات...</div>';
+    try {
+      const table = currentSection === "services" ? "services" : "wanted_services";
+      let query = db.from(table).select("*").eq("status", "active").order("created_at", { ascending: false }).limit(50);
+      const city = $("city").value;
+      if (city) query = query.eq("city", city);
+      const { data, error } = await query;
+      if (error) throw error;
+
+      const governorate = $("governorate").value;
+      const rows = (data || []).filter(row => !governorate || !row.governorate || row.governorate === governorate);
+      if (!rows.length) {
+        feed.innerHTML = '<div class="empty">ما في منشورات ظاهرة بهالقسم حالياً. كن أول من ينشر!</div>';
+        return;
+      }
+      rows.forEach(row => feed.appendChild(renderPost(row, currentSection)));
+    } catch (error) {
+      console.error("Load error:", error);
+      feed.innerHTML = '<div class="empty">تعذّر تحميل المنشورات. تأكد من اتصال Supabase وسياسات القراءة (RLS).</div>';
+    }
+  }
+
+  document.querySelectorAll("[data-section]").forEach(button => {
+    button.addEventListener("click", () => renderSection(button.dataset.section));
+  });
+  $("addBtn").addEventListener("click", openAddMenu);
+  $("closeBtn").addEventListener("click", closeSheet);
+  overlay.addEventListener("click", event => { if (event.target === overlay) closeSheet(); });
+  document.addEventListener("keydown", event => { if (event.key === "Escape") closeSheet(); });
+
+  $("loginBtn").addEventListener("click", async () => {
+    await refreshUser();
+    if (currentUser) {
+      if (confirm("هل تريد تسجيل الخروج؟")) {
+        await db.auth.signOut();
+        await refreshUser();
+        loadPosts();
+      }
+    } else {
+      openAuth();
+    }
+  });
+
+  $("profileBtn").addEventListener("click", async () => {
+    await refreshUser();
+    if (!currentUser) { openAuth(); return; }
+    const box = document.createElement("div");
+    box.innerHTML = `<p>أنت مسجّل الدخول.</p><p class="muted">${esc(currentUser.email || "")}</p><button class="primary-btn" id="signoutBtn">تسجيل الخروج</button>`;
+    box.querySelector("#signoutBtn").addEventListener("click", async () => {
+      await db.auth.signOut();
+      await refreshUser();
+      closeSheet();
     });
+    openSheet("حسابي", box);
+  });
 
-    document.getElementById("addBtn").addEventListener("click", openAddMenu);
-
-    document.getElementById("closeBtn").addEventListener("click", closeSheet);
-
-    overlay.addEventListener("click", event => {
-      if (event.target === overlay) closeSheet();
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeSheet();
-    });
-
-    document.getElementById("loginBtn").addEventListener("click", () => {
-      alert("تسجيل الدخول سيتم تفعيله بعد ربط Supabase Auth.");
-    });
-
-    document.getElementById("profileBtn").addEventListener("click", () => {
-      alert("صفحة الحساب ستُفعّل بعد إعداد تسجيل الدخول.");
-    });
-
-    renderSection("services");
-  </script>
+  $("governorate").addEventListener("change", loadPosts);
+  $("city").addEventListener("change", loadPosts);
+  db.auth.onAuthStateChange(() => { refreshUser(); });
+  refreshUser();
+  renderSection("services", false);
+})();
+</script>
 </body>
 </html>
